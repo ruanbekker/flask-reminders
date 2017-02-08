@@ -21,4 +21,19 @@ So I made this app to have a quick way to save bookmarks, by specifying the titl
 
 ## Screenshots:
 
+**Home:**
+
 ![Alt text](/screenshots/screenshot-home.png?raw=true "Home Screen")
+
+**List:**
+
+![Alt text](/screenshots/screenshot-list.png?raw=true "List Screen")
+
+**Add:**
+
+![Alt text](/screenshots/screenshot-add.png?raw=true "Add Screen")
+
+**Search:**
+
+![Alt text](/screenshots/screenshot-search.png?raw=true "Search Screen")
+
