@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{{ url_for('static', filename="img/favicon.ico") }}">
+
+    <title>Reminder Tracker</title>
+
+    <link href="{{ url_for('static', filename="css/bootstrap.min.css") }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename="css/ie10-viewport-bug-workaround.css") }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename="css/justified-nav.css") }}" rel="stylesheet">
+    <script "{{ url_for('static', filename="js/ie-emulation-modes-warning.js") }}"></script>
+
+  </head>
+  <body>
+
+    <div class="container">
+      <div class="masthead">
+        <h3 class="text-muted">Reminder Tracker</h3>
+        <nav>
+          <ul class="nav nav-justified">
+            <li class="active"><a href="/">Home</a></li>
+            <li><a href="/list">Show Reminders</a></li>
+            <li><a href="/add">Add Reminder</a></li>
+            <li><a href="/search">Search</a></li>
+            <li><a href="http://ruanbekker.com">About</a></li>
+            <li><a href="http://ruanbekker.com/#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="jumbotron">
+        <h1>Welcome!</h1>
+        <p class="lead">Tracker to help track things that was done</p>
+        <p><br><a class="btn btn-lg btn-success" href="/add" role="button">add something to track</a></p>
+      </div>
+
+
+      <footer class="footer">
+        <p>&copy; 2017 Ruan Bekker </p>
+      </footer>
+
+    </div>
+    <script src="{{url_for('static', filename="js/ie10-viewport-bug-workaround.js") }}"></script>
+  </body>
+</html>

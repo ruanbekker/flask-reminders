@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{{ url_for('static', filename="img/favicon.ico") }}">
+
+    <title>Reminder Tracker</title>
+
+    <link href="{{ url_for('static', filename="css/bootstrap.min.css") }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename="css/ie10-viewport-bug-workaround.css") }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename="css/justified-nav.css") }}" rel="stylesheet">
+    <script "{{ url_for('static', filename="js/ie-emulation-modes-warning.js") }}"></script>
+
+  </head>
+  <body>
+
+    <div class="container">
+      <div class="masthead">
+        <h3 class="text-muted">Reminder Tracker</h3>
+        <nav>
+          <ul class="nav nav-justified">
+            <li><a href="/">Home</a></li>
+            <li><a href="/list">Show Reminders</a></li>
+            <li><a href="/add">Add Reminder</a></li>
+            <li class="active"><a href="/search">Search</a></li>
+            <li><a href="http://ruanbekker.com">About</a></li>
+            <li><a href="http:/ruanbekker.com/#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <br>
+
+        <div class="jumbotron">
+        </div>
+      <br>
+
+<form action="/search/results" method="post">
+  <div class="input-group">
+    <input type="text" class="form-control input-lg" name="input" placeholder="Search"  autofocus>
+    <div class="input-group-btn">
+      <button class="btn btn-primary btn-lg" type="submit">
+        <i class="glyphicon glyphicon-search"></i>
+      </button>
+    </div>
+  </div>
+</form>
+
+
+      <div class="container">
+      <div class="jumbotron">
+      </div>
+
+
+      <center>
+      <h1>Results: ({{ res['hits']['total'] }}) </h1>
+     </center>
+
+         <table class="table">
+           <thead>
+             <tr>
+               <th>Date</th>
+               <th>Type</th>
+               <th>Category</th>
+               <th>Description</th>
+               <th>Link</th>
+             </tr>
+           </thead>
+
+{% for hit in res['hits']['hits'] %}
+           <tbody>
+             <tr>
+               <th scope="row">{{ hit['_source']['date'] }}</th>
+               <td>{{ hit['_source']['type'] }}</td>
+               <td>{{ hit['_source']['category'] }}</td>
+               <td>{{ hit['_source']['description'] }}</td>
+               <td><a href="{{ hit['_source']['link'] }}">{{ hit['_id'] }}</a></td>
+             </tr>
+           </tbody>
+{% endfor %}
+         </table>
+
+      <footer class="footer">
+          <p>&copy; 2016 Ruan Bekker Managed Solutions</p>
+        </footer>
+
+      </div>
+    </div>
+    <script src="{{url_for('static', filename="js/ie10-viewport-bug-workaround.js") }}"></script>
+  </body>
+</html>

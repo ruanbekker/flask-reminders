@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{{ url_for('static', filename="img/favicon.ico") }}">
+
+    <title>Reminder Tracker</title>
+
+    <link href="{{ url_for('static', filename="css/bootstrap.min.css") }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename="css/ie10-viewport-bug-workaround.css") }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename="css/justified-nav.css") }}" rel="stylesheet">
+    <script "{{ url_for('static', filename="js/ie-emulation-modes-warning.js") }}"></script>
+
+  </head>
+  <body>
+
+    <div class="container">
+      <div class="masthead">
+        <h3 class="text-muted">Reminders</h3>
+        <nav>
+          <ul class="nav nav-justified">
+            <li><a href="/">Home</a></li>
+            <li><a href="/list">Show Reminders</a></li>
+            <li class="active"><a href="/add">Add Reminder</a></li>
+            <li><a href="/search">Search</a></li>
+            <li><a href="http://ruanbekker.com">About</a></li>
+            <li><a href="http://ruanbekker.com/#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="jumbotron">
+        <h1>{{ pagetitle }} </h1>
+        <p class="lead">Page to add reminders</p>
+      </div>
+
+<form action="/post" method="POST">
+
+  <div class="form-group">
+    <label for="ftype">Type</label>
+    <select name="ftype" id="ftype" class="form-control">
+      <option>Discovered Service</option>
+      <option>Documentation</option>
+      <option>Knowledge Base</option>
+      <option>Music</option>
+      <option>Personal</option>
+      <option>Software</option>
+      <option>Stuff Done</option>
+      <option>ToDo</option>
+      <option>Training</option>
+      <option></option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="fcategory">Category</label>
+    <select name="fcategory" id="fcategory" class="form-control">
+      <optgroup label="Discovered Service" style="padding-left:30px"></optgroup>
+        <option>AWS</option>
+        <option>Big Data</option>
+        <option>Linux</option>
+        <option>Python</option>
+        <option>Python/Flask</option>
+      <optgroup label="Documentation" style="padding-left:30px"></optgroup>
+       <option>Best Practices</option>
+       <option>Hadoop</option>
+       <option>HDFS</option>
+       <option>Hive</option>
+       <option>Spark</option>
+      <optgroup label="Knowledge Base" style="padding-left:30px"></optgroup>
+	<option>BD/Elasticsearch</option>
+	<option>BD/EMR</option>
+	<option>BD/Hadoop</option>
+	<option>BD/Hive</option>
+	<option>BD/Spark</option>
+	<option>BD/Kinesis</option>
+	<option>BD/MachineLearning</option>
+	<option>Best Pracices</option>
+	<option>Linux</option>
+	<option>NoSQL/MongoDB</option>
+        <option>Performance Tuning</option>i
+      <optgroup label="Music" style="padding-left:30px"></optgroup>
+        <option>Chilled</option>
+        <option>EDM</option>
+        <option>House</option>
+        <option>Metal</option>
+        <option>Playlists</option>
+        <option>Rock</option>
+        <option>Metal</option>
+      <optgroup label="Personal" style="padding-left:30px"></optgroup>
+        <option>Fitness</option>
+        <option>Games</option>
+        <option>Health</option>
+        <option>Personal Development</option>
+      <optgroup label="Software" style="padding-left:30px"></optgroup>
+        <option>Communication</option>
+        <option>Media</option>
+        <option>Security</option>
+      <optgroup label="Stuff Done" style="padding-left:30px"></optgroup>
+        <option>Big Data</option>
+        <option>Linux</option>
+        <option>LXD Env</option>
+        <option>Personal/Finances</option>
+      <optgroup label="Training" style="padding-left:30px"></optgroup>
+        <option>IT/BigData</option>
+        <option>IT/Linux</option>
+        <option>Personal Developement</option>
+        <option>Design</option>
+      <optgroup label="Travel" style="padding-left:30px"></optgroup>
+        <option>Good Reads</option>
+        <option>Places to See</option>
+        <option>Websites</option>
+
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="fdescription">Description</label>
+    <input type="text" class="form-control" name="fdescription" id="fdescription" placeholder="Descriptive Information">
+  </div>
+
+  <div class="form-group">
+    <label for="flink">Link</label>
+    <input type="text" class="form-control" name="flink" id="flink" placeholder="https://www.example.com/post.html">
+  </div>
+
+    <button type="submit" class="btn btn-md btn-success">Submit</button>
+  </form>
+
+      <br><br>
+
+        <footer class="footer">
+          <p>&copy; 2017 Ruan Bekker </p>
+        </footer>
+      </div>
+    <script src="{{url_for('static', filename="js/ie10-viewport-bug-workaround.js") }}"></script>
+  </body>
+</html>

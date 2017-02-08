@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{{ url_for('static', filename="img/favicon.ico") }}">
+
+    <title>Reminder Tracker</title>
+
+    <link href="{{ url_for('static', filename="css/bootstrap.min.css") }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename="css/ie10-viewport-bug-workaround.css") }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename="css/justified-nav.css") }}" rel="stylesheet">
+    <script "{{ url_for('static', filename="js/ie-emulation-modes-warning.js") }}"></script>
+
+  </head>
+
+  <body>
+
+    <div class="container">
+
+
+      <div class="masthead">
+        <h3 class="text-muted">Reminder Tracker</h3>
+        <nav>
+          <ul class="nav nav-justified">
+            <li><a href="/">Home</a></li>
+            <li class="active"><a href="/list">Show Reminders</a></li>
+            <li><a href="/add">Add Reminder</a></li>
+            <li><a href="/search">Search</a></li>
+            <li><a href="http://ruanbekker.com">About</a></li>
+            <li><a href="http://ruanbekker.com/#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="jumbotron">
+        <h1>{{ projects }} </h1>
+        <p class="lead">Reminder Tracker.</p>
+        <p><a class="btn btn-lg btn-success" href="/add" role="button">Add something to track</a></p>
+      </div>
+
+      <div class="row">
+        <div class="container">
+
+      <center>
+      <h1>Results ({{number}}) </h1>
+     </center>
+
+         <table class="table">
+           <thead>
+             <tr>
+               <th>Date</th>
+               <th>Type</th>
+               <th>Category</th>
+               <th>Description</th>
+               <th>Link</th>
+             </tr>
+           </thead>
+{% for f in mydata %}
+           <tbody>
+             <tr>
+               <!--<th scope="row"></th>--!>
+               <!-- <th scope="row">{{f._id}}</th> --!>
+               <th scope="row">{{f.date}}</th>
+               <td>{{f.type}}</td>
+               <td>{{f.category}}</td>
+               <td>{{f.description}}</td>
+               <td><a href="{{f.link}}">{{f._id}}</a></td>
+             </tr>
+           </tbody>
+{% endfor %}
+         </table>
+
+
+      <footer class="footer">
+        <p>&copy; 2017 Ruan Bekker </p>
+      </footer>
+
+    </div>
+
+    <script src="{{url_for('static', filename="js/ie10-viewport-bug-workaround.js") }}"></script>
+  </body>
+</html>
