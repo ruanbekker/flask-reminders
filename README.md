@@ -37,3 +37,4 @@ So I made this app to have a quick way to save bookmarks, by specifying the titl
 
 ![Alt text](/screenshots/screenshot-search.png?raw=true "Search Screen")
 
+
