@@ -12,6 +12,7 @@ So I made this app to have a quick way to save bookmarks, by specifying the titl
 * MongoDB
 * Elasticsearch
 * Python Flask
+* Marketing Bootstrap
 
 ## Planned Features
 
