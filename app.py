@@ -50,58 +50,67 @@ def register():
 
 @app.route('/list')
 def get():
-    cdata = handle.reminders.find().sort([("date", -1)])
-    count = handle.reminders.find().count()
-    return render_template('home.html', mydata=cdata, number=count)
+    if 'username' in session:
+        cdata = handle.reminders.find().sort([("date", -1)])
+        count = handle.reminders.find().count()
+        return render_template('home.html', mydata=cdata, number=count)
+    return render_template('login.html')
 
 @app.route('/search')
 def lookup():
-    return render_template('search.html')
+    if 'username' in session:
+        return render_template('search.html')
+    return render_template('login.html')
 
 @app.route('/search/results', methods=['GET', 'POST'])
 def search_request():
-
-    search_term = request.form["input"]
-    res = es.search(index="flask_reminders", size=20, body={"query": {"multi_match" : { "query": search_term, "fields": ["description", "category", "type", "link"] }}})
-    return render_template('results.html', res=res )
+    if 'username' in session:
+        search_term = request.form["input"]
+        res = es.search(index="flask_reminders", size=20, body={"query": {"multi_match" : { "query": search_term, "fields": ["description", "category", "type", "link"] }}})
+        return render_template('results.html', res=res )
+    return render_template('login.html')
 
 @app.route('/add')
 def registration():
-    return render_template('add.html', pagetitle='Add Item')
+    if 'username' in session:
+        return render_template('add.html', pagetitle='Add Item')
+    return render_template('login.html')
 
 @app.route("/post", methods=['POST'])
 def write():
-    _date = datetime.datetime.now().strftime("%Y-%m-%d")
-    _type = request.form.get("ftype")
-    _category = request.form.get("fcategory")
-    _description = request.form.get("fdescription")
-    _link = request.form.get("flink")
+    if 'username' in session:
+        _date = datetime.datetime.now().strftime("%Y-%m-%d")
+        _type = request.form.get("ftype")
+        _category = request.form.get("fcategory")
+        _description = request.form.get("fdescription")
+        _link = request.form.get("flink")
 
 # mongodb
-    oid = handle.reminders.insert(
-        {
-        "date": str(_date),
-        "type": _type,
-        "category": _category,
-        "description": _description,
-        "link": _link,
-        }
-    )
+        mongodata = handle.reminders.insert(
+            {
+            "date": str(_date),
+            "type": _type,
+            "category": _category,
+            "description": _description,
+            "link": _link,
+            }
+        )
 
 # elasticsearch:
-    esdata = json.dumps(
-        {
-        "date": str(_date),
-        "type": _type,
-        "category": _category,
-        "description": _description,
-        "link": _link,
-        }
-    )
+        esdata = json.dumps(
+            {
+            "date": str(_date),
+            "type": _type,
+            "category": _category,
+            "description": _description,
+            "link": _link,
+            }
+        )
 
-    espost = es.index(index="flask_reminders", doc_type="bookmarks", body=esdata)
+        espost = es.index(index="flask_reminders", doc_type="bookmarks", body=esdata)
+        return redirect ("/list")
 
-    return redirect ("/list")
+    return render_template('login.html')
 
 if __name__ == '__main__':
     app.secret_key = 'mysecret'
