@@ -1,4 +1,4 @@
-# flask-reminders (wip)
+# flask-reminders (wip) [public demo](http://app-bb6ec1713db8.demo.ruanbekker.com/)
 App with Python Flask, MongoDB and Elasticsearch that I use to to bookmark websites/resources.
 
 ## Motivation:
