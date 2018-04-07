@@ -1,0 +1,19 @@
+version: "3.3"
+
+services:
+  flask_reminders:
+    image: registry.gitlab.com/rbekker87/docker/flask-reminders:debian
+    environment:
+      - ELASTICSEARCH_URL=https://user:pass@es.eu-west-1.bonsaisearch.net
+      - APPLICATION_ENV=production
+      - APPLICATION_PORT=5000
+      - MONGODB_URL=mongodb://user:pass@db.mlab.com:27017/mdb?authMechanism=SCRAM-SHA-1
+    networks:
+      - appnet
+    deploy:
+      mode: replicated
+      replicas: 1
+
+networks:
+  appnet:
+    external: true
